@@ -8,7 +8,11 @@ const gifContainer = document.querySelector("#gif-container");
 
 const fetchButton = document.querySelector("#fetch-gif-btn");
 
-async function fetchGifs() {
+const searchInput = document.querySelector("#search-input");
+
+async function fetchGifs(searchTerm) {
+    const endpoint = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${encodeURIComponent(searchTerm)}&limit=10`;
+
     const response = await fetch(endpoint);
 
     const data = await response.json();
@@ -21,7 +25,9 @@ async function fetchGifs() {
 }
 
 fetchButton.addEventListener("click", async () => {
-    const images = await fetchGifs();
+    const searchTerm = searchInput.value.trim() || "cats";
+    
+    const images = await fetchGifs(searchTerm);
 
     gifContainer.innerHTML = "";
 
