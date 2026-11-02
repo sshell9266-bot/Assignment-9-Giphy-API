@@ -26,12 +26,12 @@ async function fetchGifs(searchTerm) {
 
 fetchButton.addEventListener("click", async () => {
     const searchTerm = searchInput.value.trim() || "cats";
-    
+
     const images = await fetchGifs(searchTerm);
 
     gifContainer.innerHTML = "";
 
     for (const image of images) {
-        gifContainer.innerHTML += `<img src="${image}" class="col-3 mb-3" alt="Giphy GIF">`;
+        gifContainer.innerHTML += `<img src="${image}" alt="Giphy GIF">`;
     }
 });
